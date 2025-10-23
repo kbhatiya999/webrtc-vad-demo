@@ -1,0 +1,4 @@
+webrtcvad-wheels==2.0.14
+wave==0.0.2
+pyaudio==0.2.14
+numpy==1.24.3
