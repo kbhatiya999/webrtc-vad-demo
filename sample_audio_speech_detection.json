@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "audio_file": "sample_audio.wav",
+    "processing_timestamp": "2025-10-23T06:25:40.922234",
+    "vad_aggressiveness": 2,
+    "frame_duration_ms": 30,
+    "total_regions": 1
+  },
+  "speech_regions": [
+    {
+      "start_time": 0.0,
+      "end_time": 4.98,
+      "frame_count": 166,
+      "duration": 4.98,
+      "confidence": 1.0
+    }
+  ],
+  "summary": {
+    "total_speech_duration": 4.98,
+    "average_region_duration": 4.98,
+    "longest_region_duration": 4.98,
+    "shortest_region_duration": 4.98
+  }
+}
