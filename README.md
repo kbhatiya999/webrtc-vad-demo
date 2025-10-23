@@ -36,24 +36,64 @@ This repository demonstrates advanced usage of **WebRTC Voice Activity Detection
 - **Robust error handling** and validation
 - **Modular architecture** for easy integration
 
-## Installation
+## Quick Start
 
-### Prerequisites
+### Automated Setup
+
+The easiest way to get started is with the automated setup script:
+
+```bash
+# Full setup with sample audio from AdamSeekerOfficial channel
+python3 setup.py
+
+# Setup with custom YouTube video
+python3 setup.py --video-url "https://www.youtube.com/watch?v=VIDEO_ID"
+
+# Setup with specific video from a channel
+python3 setup.py --channel "https://www.youtube.com/@ChannelName" --video-index 1
+
+# Setup without downloading audio (if you have your own)
+python3 setup.py --no-audio
+```
+
+### Manual Installation
+
+If you prefer to install manually:
+
+#### Prerequisites
 
 - Python 3.7 or higher
 - pip package manager
 - Audio input device (for real-time demo)
+- FFmpeg (for audio conversion)
 
-### Install Dependencies
+#### Install Dependencies
 
 ```bash
+# Install Python packages
 pip install -r requirements.txt
+
+# On Linux, install system dependencies
+sudo apt-get install portaudio19-dev python3-pyaudio ffmpeg
+
+# On macOS with Homebrew
+brew install portaudio ffmpeg
+
+# On Windows, install from conda-forge
+conda install -c conda-forge portaudio ffmpeg
 ```
 
-Or install manually:
+#### Download Sample Audio
 
 ```bash
-pip install webrtcvad-wheels wave numpy matplotlib scipy pyaudio
+# Download from AdamSeekerOfficial channel
+python3 download_audio.py --adam-seeker
+
+# Download specific video
+python3 download_audio.py --url "https://www.youtube.com/watch?v=VIDEO_ID"
+
+# List videos from a channel
+python3 download_audio.py --list-channel "https://www.youtube.com/@ChannelName"
 ```
 
 ### System Requirements
@@ -61,6 +101,7 @@ pip install webrtcvad-wheels wave numpy matplotlib scipy pyaudio
 - **Audio Processing**: Requires audio input device for real-time features
 - **Visualization**: Requires display for matplotlib plots
 - **Audio Format**: 16-bit mono PCM WAV files for file processing
+- **YouTube Download**: Requires internet connection and FFmpeg
 
 ## Usage
 
@@ -68,46 +109,69 @@ pip install webrtcvad-wheels wave numpy matplotlib scipy pyaudio
 
 ```bash
 # Run the comprehensive demo
-python demo.py
+python3 demo.py
 
 # Show all available options
-python demo.py --help
+python3 demo.py --help
+```
+
+### Setup and First Run
+
+```bash
+# 1. Run the setup script (downloads sample audio)
+python3 setup.py
+
+# 2. Process the downloaded sample audio
+python3 demo.py --audio sample_audio.wav
+
+# 3. Try real-time detection (requires microphone)
+python3 demo.py --realtime
 ```
 
 ### Audio File Processing
 
 ```bash
 # Process a WAV file with default settings
-python demo.py --audio sample.wav
+python3 demo.py --audio sample.wav
 
 # Process with high aggressiveness (noise filtering)
-python demo.py --audio sample.wav --aggressiveness 3
+python3 demo.py --audio sample.wav --aggressiveness 3
 
 # Create a sample audio file for testing
-python demo.py --create-sample
+python3 demo.py --create-sample
+
+# Download audio from YouTube
+python3 download_audio.py --url "https://www.youtube.com/watch?v=VIDEO_ID"
+python3 download_audio.py --adam-seeker  # From AdamSeekerOfficial channel
 ```
 
 ### Real-time Microphone Detection
 
 ```bash
 # Console mode with live status updates
-python demo.py --realtime
+python3 demo.py --realtime
 
 # Visualization mode with live plotting
-python demo.py --realtime --visualization
+python3 demo.py --realtime --visualization
 
 # High sensitivity for quiet environments
-python demo.py --realtime --aggressiveness 0
+python3 demo.py --realtime --aggressiveness 0
 ```
 
 ### Advanced Usage
 
 ```bash
 # Process audio file and show visualization
-python audio_processor.py sample.wav
+python3 audio_processor.py sample.wav
 
 # Run real-time detection with custom settings
-python realtime_microphone.py --visualization --aggressiveness 2
+python3 realtime_microphone.py --visualization --aggressiveness 2
+
+# Download audio from specific channel video
+python3 download_audio.py --channel "https://www.youtube.com/@ChannelName" --index 2
+
+# Setup with custom audio source
+python3 setup.py --video-url "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"
 ```
 
 ### VAD Aggressiveness Modes
@@ -192,9 +256,12 @@ detector.run_visualization_mode()
 ├── demo.py                    # Main demo script with CLI interface
 ├── audio_processor.py         # Advanced audio file processing
 ├── realtime_microphone.py     # Real-time microphone detection
+├── download_audio.py          # YouTube audio downloader
+├── setup.py                   # Automated setup script
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # This file
-└── LICENSE                    # MIT License
+├── LICENSE                    # MIT License
+└── sample_audio.wav           # Sample audio file (created by setup)
 ```
 
 ## Output Files
